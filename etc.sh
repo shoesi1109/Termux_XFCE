@@ -100,7 +100,7 @@ export QT_IM_MODULE=fcitx5' >> $PREFIX/etc/bash.bashrc
     rm termux-widget*.apk
 
     
-echo -e '#!/data/data/com.termux/files/usr/bin/bash
+echo -e '#!/data/data/com.termux/files/usr/bin/bash'
 killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android virgl_test_server
 
 termux-wake-lock; XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :1.0 & 
