@@ -176,7 +176,7 @@ termux_hangover_wine_install()
     echo -e "${GREEN}tur-multilib, tur-hacking 저장소 추가${WHITE}"
 
     if !grep -q "tur-multilib tur-hacking" ~/../usr/etc/apt/sources.list.d/tur.list; then
-        sed -i 's/$/ tur-multilib tur-hacking/' ~/../usr/etc/apt/sources.list.d/tur.list
+        sed -i "s/$/ tur-multilib tur-hacking/" ~/../usr/etc/apt/sources.list.d/tur.list
     fi
     sleep 1
 
