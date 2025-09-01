@@ -30,6 +30,11 @@ clear
 echo ""
 echo "이 스크립트는 Termux XFCE Desktop 및 proot-distro ubuntu를 설치 합니다. 오류 수정 -shoesi1109"
 echo ""
+rm xfce.sh
+rm proot.sh
+rm utils.sh
+rm etc.sh
+rm install.sh
 read -r -p "사용자 이름(id)을 입력하세요.: " username </dev/tty
 
 termux-change-repo
