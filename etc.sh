@@ -97,15 +97,15 @@ export QT_IM_MODULE=fcitx5' >> $PREFIX/etc/bash.bashrc
     rm termux-widget*.apk
 
     # .shortcuts 디렉토리 생성
-    mkdir -p ~/.shortcuts
+    mkdir -p ~/.shortcuts || true
 
     echo '#!/data/data/com.termux/files/usr/bin/bash
-killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android virgl_test_server
+killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android virgl_test_server 2>/dev/null || true
 
-termux-wake-lock; XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :1.0 & 
+termux-wake-lock; XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :1.0 & || true
 sleep 1
 
-am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity 
+am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity || true
 sleep 1
 
 LD_PRELOAD=/system/lib64/libskcodec.so pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
@@ -115,7 +115,7 @@ env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch
 #env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
 #env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &' > ~/.shortcuts/startXFCE
 
-    chmod +x ~/.shortcuts/startXFCE
+    chmod +x ~/.shortcuts/startXFCE 
 
     sleep 1
     echo "$HOME/.shortcuts/startXFCE" > $PREFIX/bin/startXFCE
