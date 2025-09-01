@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+     #!/data/data/com.termux/files/usr/bin/bash
 
 export GREEN='\033[0;32m'
 export TURQ='\033[0;36m'
@@ -79,17 +79,14 @@ export QT_IM_MODULE=fcitx5' >> $PREFIX/etc/bash.bashrc
 	pkg install root-repo -y
 	pkg update -y && pkg upgrade -y
 
-
     sleep 1
     echo -e "${GREEN}한글 설치 ${WHITE}"
     pkg install fcitx5* -y
     pkg install libhangul libhangul-static -y
 
-
     sleep 1
     apt autoclean -y
     apt autoremove -y
-
 
     sleep 1
     echo -e "${GREEN}Termux-widget 설치.${WHITE}"
@@ -99,8 +96,10 @@ export QT_IM_MODULE=fcitx5' >> $PREFIX/etc/bash.bashrc
 	echo -e "${GREEN}termux widget 설치파일 삭제.${WHITE}"
     rm termux-widget*.apk
 
-    
-echo -e "#!/data/data/com.termux/files/usr/bin/bash"
+    # .shortcuts 디렉토리 생성
+    mkdir -p ~/.shortcuts
+
+    echo '#!/data/data/com.termux/files/usr/bin/bash
 killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android virgl_test_server
 
 termux-wake-lock; XDG_RUNTIME_DIR=${TMPDIR} termux-x11 :1.0 & 
@@ -123,7 +122,6 @@ env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch
     chmod +x $PREFIX/bin/startXFCE
 }
 
-
 termux_gpu_accel_install()
 {
     set -e
@@ -131,8 +129,8 @@ termux_gpu_accel_install()
     sleep 1
     echo -e "${GREEN}mesa-vulkan-icd-freedreno-dri3 설치-Adreno GPU가 장착된 장치에서 Vulkan API를 사용하기 위한 환경을 제공합니다. ${WHITE}"
     pkg install -y mesa-vulkan-icd-freedreno-dri3
-
 }
+
 termux_gpu_accel_dev_install(){
     sleep 1
     echo -e "${GREEN}clvk 설치 - OpenCL을 Vulkan으로 매핑하는 계층(library)입니다.${WHITE}"
@@ -177,13 +175,13 @@ termux_hangover_wine_install()
     sleep 1
     echo -e "${GREEN}tur-multilib, tur-hacking 저장소 추가${WHITE}"
 
-    if !grep -q "tur-multilib tur-hacking" ~/../usr/etc/apt/sources.list.d/tur.list; then
+    if ! grep -q "tur-multilib tur-hacking" ~/../usr/etc/apt/sources.list.d/tur.list; then
         sed -i "s/$/ tur-multilib tur-hacking/" ~/../usr/etc/apt/sources.list.d/tur.list
     fi
     sleep 1
 
     echo -e "${GREEN}의존프로그램 설치${WHITE}"
-	pkg install -y cabextract clang 7zip freetype gnutls libandroid-shmem-static libx11 xorgproto libdrm libpixman libxfixes libjpeg-turbo xtrans libxxf86vm xorg-xrandr xorg-font-util xorg-util-macros libxfont2 libxkbfile libpciaccess xcb-util-renderutil xcb-util-image xcb-util-keysyms xcb-util-wm xorg-xkbcomp xkeyboard-config libxdamage libxinerama libxshmfence
+	pkg install -y cabextract clang 7zip freetype gnutls libandroid-shmem-static libx11 xorgproto libdrm libpixman libxfixes libjpeg-turbo xtrans libxxf86vm xorg-xrandr xorg-font-util xorg-util-macros
 
     sleep 1
     echo -e "${GREEN}hangover-wine 설치${WHITE}"
@@ -191,7 +189,6 @@ termux_hangover_wine_install()
     sleep 1
     echo -e "${GREEN}winetricks 설치${WHITE}"
     pkg install -y winetricks
-
 }
 
 termux_base_setup
@@ -209,14 +206,14 @@ read yn
 echo -e "${UYELLOW}gpu 가속 dev 관련(clvk 등)을 설치하겠습니까?(y/n)${WHITE}"  
 read yn
 	case $yn in 
-		y ) echo -e "${GREEN}gpu 가속을 설치합니다.${WHITE}"
+		y ) echo -e "${GREEN}gpu 가속 dev를 설치합니다.${WHITE}"
             termux_gpu_accel_dev_install
             ;;
 		* ) echo -e "${GREEN}설치를 하지 않습니다.${WHITE}"
             ;;
 	esac
 
-
-termux_gpu_accel_install
-termux_gpu_accel_dev_install
-#termux_hangover_wine_install
+# 주석 처리된 자동 실행 부분들
+# termux_gpu_accel_install
+# termux_gpu_accel_dev_install
+# termux_hangover_wine_install
