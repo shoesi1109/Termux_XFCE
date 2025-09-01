@@ -114,7 +114,7 @@ LD_PRELOAD=/system/lib64/libskcodec.so pacmd load-module module-native-protocol-
 
 env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
 #env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
-#env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &' > 
+#env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &
 
 
 
