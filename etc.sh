@@ -99,8 +99,6 @@ export QT_IM_MODULE=fcitx5' >> $PREFIX/etc/bash.bashrc
 	echo -e "${GREEN}termux widget 설치파일 삭제.${WHITE}"
     rm termux-widget*.apk
 
-    echo -e "${GREEN}shortcuts 생성.${WHITE}"
-    mkdir ~/.shortcuts
     
 echo -e '#!/data/data/com.termux/files/usr/bin/bash
 killall -9 termux-x11 Xwayland pulseaudio virgl_test_server_android virgl_test_server
@@ -116,13 +114,11 @@ LD_PRELOAD=/system/lib64/libskcodec.so pacmd load-module module-native-protocol-
 
 env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
 #env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
-#env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &' > ~/.shortcuts/startXFCE
+#env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &' > 
 
-    chmod +x ~/.shortcuts/startXFCE
+
 
     sleep 1
-    echo "$HOME/.shortcuts/startXFCE" > $PREFIX/bin/startXFCE
-    chmod +x $PREFIX/bin/startXFCE
 }
 
 
