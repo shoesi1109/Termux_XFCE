@@ -15,6 +15,11 @@ finish() {
     echo
     echo "ERROR: XFCE on Termux 설치를 실패하였습니다."
     echo "위 error message(s)를 참고하세요."
+    rm xfce.sh
+    rm proot.sh
+    rm utils.sh
+    rm etc.sh
+    rm install.sh
   fi
 }
 
