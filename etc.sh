@@ -112,32 +112,15 @@ sleep 1
 LD_PRELOAD=/system/lib64/libskcodec.so pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
 LD_PRELOAD=/system/lib64/libskcodec.so pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 
-# shortcuts 디렉토리 보장
-mkdir -p ~/.shortcuts
+env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
+#env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=zink TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
+#env DISPLAY=:1.0 dbus-launch --exit-with-session xfce4-session &' > ~/.shortcuts/startXFCE
 
-# 기존 파일 있으면 덮어쓰기
-cat << 'EOF' > ~/.shortcuts/startXFCE
-#!/data/data/com.termux/files/usr/bin/bash
-# XFCE 실행 스크립트 (Termux + Termux-X11 환경)
+    chmod +x ~/.shortcuts/startXFCE
 
-pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
-
-if ! pgrep -x "virgl_test_server_android" >/dev/null; then
-    virgl_test_server_android >/dev/null 2>&1 &
-fi
-
-export DISPLAY=:1.0
-
-env MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch --exit-with-session xfce4-session &
-EOF
-
-chmod +x ~/.shortcuts/startXFCE
-
-# PATH에 등록할 실행 파일 생성
-echo "$HOME/.shortcuts/startXFCE" > $PREFIX/bin/startXFCE
-chmod +x $PREFIX/bin/startXFCE
-
-
+    sleep 1
+    echo "$HOME/.shortcuts/startXFCE" > $PREFIX/bin/startXFCE
+    chmod +x $PREFIX/bin/startXFCE
 }
 
 
