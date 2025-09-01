@@ -129,9 +129,6 @@ env DISPLAY=:1.0 MESA_LOADER_DRIVER_OVERRIDE=kgsl TU_DEBUG=noconform dbus-launch
 termux_gpu_accel_install()
 {
     set -e
-    sleep 1
-    echo -e "${GREEN}mesa ${WHITE}"
-	pkg install -y mesa mesa-demos mesa-dev osmesa osmesa-demos 
 
     sleep 1
     echo -e "${GREEN}mesa-vulkan-icd-freedreno-dri3 설치-Adreno GPU가 장착된 장치에서 Vulkan API를 사용하기 위한 환경을 제공합니다. ${WHITE}"
